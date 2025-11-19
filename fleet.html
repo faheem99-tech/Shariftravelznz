@@ -1,0 +1,183 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fleet Summary - Sharif Travel</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
+    }
+
+    header {
+      background-color: #004080;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 25px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .logo-area img {
+      width: 120px;
+      height: 50px;
+      object-fit: contain;
+      background-color: #fff;
+      border-radius: 4px;
+    }
+
+    .back-btn {
+      background-color: white;
+      color: #004080;
+      border: 2px solid #004080;
+      padding: 8px 15px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .back-btn:hover {
+      background-color: #004080;
+      color: white;
+    }
+
+    .main-content {
+      padding: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #004080;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #004080;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .green {
+      color: green;
+      font-weight: bold;
+    }
+
+    .red {
+      color: red;
+      font-weight: bold;
+    }
+
+    .no-data {
+      text-align: center;
+      padding: 20px;
+      font-style: italic;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <a href="index.html" class="back-btn">← Back</a>
+    <h1>SHARIF TRAVEL</h1>
+    <div class="logo-area">
+      <img src="LOGS.jpg" alt="Company Logo">
+    </div>
+  </header>
+
+  <div class="main-content">
+    <h2>Fleet Summary</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Bus Name</th>
+          <th>Plate Number</th>
+          <th>Purchase Cost</th>
+          <th>Income Total</th>
+          <th>Expenses Total</th>
+          <th>Net</th>
+        </tr>
+      </thead>
+      <tbody id="fleetTableBody">
+        <tr><td colspan="6" class="no-data">No buses found.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function loadFleetSummary() {
+      const buses = JSON.parse(localStorage.getItem("buses") || "[]");
+      const transactions = JSON.parse(localStorage.getItem("transactions") || "[]");
+      const tbody = document.getElementById("fleetTableBody");
+
+      if (buses.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" class="no-data">No buses found.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = "";
+      buses.forEach(bus => {
+        // Filter transactions for this bus
+        const busTransactions = transactions.filter(t => t.bus === bus.name);
+        let incomeTotal = 0;
+        let expensesTotal = 0;
+
+        busTransactions.forEach(t => {
+          const amt = parseFloat(t.amount) || 0;
+          if (t.type === "Revenue") {
+            incomeTotal += amt;
+          } else if (t.type === "Expenses") {
+            expensesTotal += amt;
+          }
+        });
+
+        const net = incomeTotal - expensesTotal;
+
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${bus.name}</td>
+          <td>${bus.plate}</td>
+          <td>${bus.cost}</td>
+          <td class="green">${incomeTotal.toFixed(2)}</td>
+          <td class="red">${expensesTotal.toFixed(2)}</td>
+          <td>${net.toFixed(2)}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    loadFleetSummary();
+  </script>
+
+</body>
+</html>

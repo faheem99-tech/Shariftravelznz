@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sharif Travel</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: black;
+    }
+
+    header {
+      background-color: black;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 25px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .logo-area img {
+      width: 120px;
+      height: 50px;
+      object-fit: contain;
+      background-color: #fff;
+      border-radius: 4px;
+    }
+
+    .back-btn {
+      background-color: white;
+      color: #004080;
+      border: 2px solid #004080;
+      padding: 8px 15px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .back-btn:hover {
+      background-color: #004080;
+      color: white;
+    }
+
+    /* ===== Horizontal Menu ===== */
+    nav {
+      background-color: #0066cc;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: inline-flex;
+    }
+
+    nav li {
+      position: relative;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: bold;
+      font-size: 16px;
+      display: block;
+      padding: 8px 10px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Dropdown Menu */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #0066cc;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 10px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #004080;
+      text-decoration: none;
+    }
+
+    nav li:hover .dropdown-content {
+      display: block;
+    }
+
+    /* ===== About Us Section ===== */
+    .about-section {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin: 30px auto;
+      max-width: 1000px;
+    }
+
+    .about-section h3 {
+      color: #004080;
+      margin-bottom: 10px;
+    }
+
+    .about-section p {
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* ===== Slideshow ===== */
+    .slideshow {
+      position: relative;
+      max-width: 1000px;
+      margin: 20px auto;
+    }
+
+    .slides {
+      display: none;
+      width: 100%;
+      height: 20cm;
+      border-radius: 10px;
+      animation: fade 2s ease-in-out;
+    }
+
+    @keyframes fade {
+      from {opacity: 0.4;}
+      to {opacity: 1;}
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      background-color: #004080;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+    }
+.two-column {
+dislay: flex;
+}
+.column {
+width: 50%;
+padding:20px;
+box-sizing:boarder-box;
+}
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>SHARIF TRAVEL</h1>
+    <div class="logo-area">
+      <img src="LOGS.jpg" alt="Company Logo">
+    </div>
+  </header>
+
+  <!-- Horizontal Menu -->
+  <nav>
+    <ul>
+      <li>
+        <a href="#about">Bus info</a>
+        <div class="dropdown-content">
+          <a href="bus_details.html">Bus details</a>
+          <a href="add_bus.html">Add new</a>
+        </div>
+      </li>
+      <li>
+      <li><a href="transaction.html">Transaction</a></li>
+	   <li><a href="driver.html">Drivers info</a></li>
+        <li><a href="fleet.html">Fleet Summary</a></li>
+    </ul>
+  </nav>
+  <!-- About, Mission, Vision -->
+  <div class="about-section" id="about">
+    <h3>About Us</h3>
+    <p>Sharif Travel is a trusted bus transportation company providing safe, comfortable, and reliable travel services across Zanzibar. From Stone Town to various routes across the island, our goal is to connect people with ease and convenience through our modern bus network.</p>
+
+    <h3 id="mission">Our Mission</h3>
+    <p>To provide high-quality, affordable, and dependable bus travel services that ensure customer satisfaction while promoting safe and sustainable transportation in Zanzibar.</p>
+
+    <h3 id="vision">Our Vision</h3>
+    <p>To become Zanzibar’s leading transport provider, recognized for innovation, efficiency, and exceptional service that connects communities and supports tourism growth.</p>
+  </div>
+
+  <!-- Slideshow -->
+
+  <div class="slideshow">
+    <img class="slides" src="1.jpg" alt="Sharif Travel Bus 1">
+    <img class="slides" src="2.jpg" alt="Sharif Travel Bus 2">
+    <img class="slides" src="3.jpg" alt="Sharif Travel Bus 3">
+    <img class="slides" src="4.jpg" alt="Sharif Travel Bus 1">
+    <img class="slides" src="5.jpg" alt="Sharif Travel Bus 2">
+    <img class="slides" src="6.jpg" alt="Sharif Travel Bus 3">
+
+  </div>
+
+  <!-- Fade Slideshow Script -->
+  <script>
+    let slideIndex = 0;
+    const slides = document.getElementsByClassName("slides");
+
+    function showSlides() {
+      for (let i = 0; i < slides.length; i++) slides[i].style.display = "none";
+      slideIndex++;
+      if (slideIndex > slides.length) slideIndex = 1;
+      slides[slideIndex - 1].style.display = "block";
+      setTimeout(showSlides, 3000);
+    }
+    showSlides();
+  </script>
+
+  <!-- Footer -->
+  <footer>
+    <p><strong>Contact Us:</strong></p>
+    <p>Mobile: +255786500461<br>
+    Instagram: <a href="https://instagram.com/sharifbusznz">@sharifbusznz</a><br>
+    Email: sharifbus2022@gmail.com</p>
+    <p>© 2025 Sharif Travel. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>

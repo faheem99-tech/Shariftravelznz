@@ -1,0 +1,366 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New Bus - Sharif Travel</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
+    }
+
+    header {
+      background-color: #004080;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 25px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: 1px;
+    }
+
+    .logo-area img {
+      width: 120px;
+      height: 50px;
+      object-fit: contain;
+      background-color: #fff;
+      border-radius: 4px;
+    }
+
+    .back-btn {
+      background-color: white;
+      color: #004080;
+      border: 2px solid #004080;
+      padding: 8px 15px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .back-btn:hover {
+      background-color: #004080;
+      color: white;
+    }
+
+    .main-content {
+      padding: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .main-content h2 {
+      color: #004080;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #004080;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0066cc;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #004080;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .no-data {
+      text-align: center;
+      padding: 30px;
+      font-style: italic;
+      color: #666;
+    }
+
+    /* ===== Actions Menu ===== */
+    .actions-menu {
+      position: relative;
+      display: inline-block;
+    }
+
+    .actions-menu button {
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: black; /* Dots color */
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: white;
+      min-width: 100px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 5px;
+    }
+
+    .dropdown-content button {
+      width: 100%;
+      padding: 8px 12px;
+      border: none;
+      background: none;
+      text-align: left;
+      cursor: pointer;
+      color: black; /* Dropdown text color */
+    }
+
+    .dropdown-content button:hover {
+      background-color: #f1f1f1;
+    }
+
+    .actions-menu.show .dropdown-content {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="back-btn">← Back</a>
+    <h1>SHARIF TRAVEL</h1>
+    <div class="logo-area">
+      <img src="LOGS.jpg" alt="Company Logo">
+    </div>
+  </header>
+
+  <div class="main-content">
+    <h2>Add New Bus</h2>
+
+    <form id="busForm">
+      <label>Bus Name:</label>
+      <input type="text" id="name" required>
+
+      <label>Model:</label>
+      <input type="text" id="model" required>
+
+      <label>Color:</label>
+      <input type="text" id="color" required>
+
+      <label>Plate Number:</label>
+      <input type="text" id="plate" required>
+
+      <label>Engine Number:</label>
+      <input type="text" id="engine" required>
+
+      <label>Chassis Number:</label>
+      <input type="text" id="chassis" required>
+
+      <label>Number of Passengers:</label>
+      <input type="number" id="passengers" required>
+
+      <label>Cost of Purchase:</label>
+      <input type="number" id="cost" required>
+
+      <label>Date of Purchase:</label>
+      <input type="date" id="purchaseDate" required>
+
+      <label>Date of Work Begins:</label>
+      <input type="date" id="workDate" required>
+
+      <label>Condition:</label>
+      <select id="condition" required>
+        <option value="New">New</option>
+        <option value="Second Hand">Second Hand</option>
+      </select>
+
+      <button type="submit">Save Bus</button>
+    </form>
+
+    <h2>Summary of Added Buses</h2>
+    <table id="busTable">
+      <thead>
+        <tr>
+          <th>Bus Name</th>
+          <th>Model</th>
+          <th>Color</th>
+          <th>Plate Number</th>
+          <th>Engine Number</th>
+          <th>Chassis Number</th>
+          <th>Passengers</th>
+          <th>Purchase Cost</th>
+          <th>Date of Purchase</th>
+          <th>Date of Work Begins</th>
+          <th>Condition</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="busTableBody">
+        <tr><td colspan="12" class="no-data">No bus added yet.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const form = document.getElementById("busForm");
+    const tbody = document.getElementById("busTableBody");
+
+    function loadBuses() {
+      const buses = JSON.parse(localStorage.getItem("buses") || "[]");
+      tbody.innerHTML = "";
+      if (buses.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="12" class="no-data">No bus added yet.</td></tr>';
+        return;
+      }
+
+      buses.forEach((b, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${b.name}</td>
+          <td>${b.model}</td>
+          <td>${b.color}</td>
+          <td>${b.plate}</td>
+          <td>${b.engine}</td>
+          <td>${b.chassis}</td>
+          <td>${b.passengers}</td>
+          <td>${b.cost}</td>
+          <td>${b.purchaseDate}</td>
+          <td>${b.workDate}</td>
+          <td>${b.condition}</td>
+          <td>
+            <div class="actions-menu">
+              <button onclick="toggleMenu(this)">⋮</button>
+              <div class="dropdown-content">
+                <button onclick="editBus(${index})">Modify</button>
+                <button onclick="deleteBus(${index})">Delete</button>
+              </div>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function toggleMenu(button) {
+      const menu = button.parentElement;
+      menu.classList.toggle("show");
+      document.querySelectorAll(".actions-menu").forEach(m => {
+        if (m !== menu) m.classList.remove("show");
+      });
+    }
+
+    function deleteBus(index) {
+      if (confirm("Are you sure you want to delete this bus?")) {
+        const buses = JSON.parse(localStorage.getItem("buses") || "[]");
+        buses.splice(index, 1);
+        localStorage.setItem("buses", JSON.stringify(buses));
+        loadBuses();
+      }
+    }
+
+    function editBus(index) {
+      const buses = JSON.parse(localStorage.getItem("buses") || "[]");
+      const b = buses[index];
+      document.getElementById("name").value = b.name;
+      document.getElementById("model").value = b.model;
+      document.getElementById("color").value = b.color;
+      document.getElementById("plate").value = b.plate;
+      document.getElementById("engine").value = b.engine;
+      document.getElementById("chassis").value = b.chassis;
+      document.getElementById("passengers").value = b.passengers;
+      document.getElementById("cost").value = b.cost;
+      document.getElementById("purchaseDate").value = b.purchaseDate;
+      document.getElementById("workDate").value = b.workDate;
+      document.getElementById("condition").value = b.condition;
+
+      buses.splice(index, 1);
+      localStorage.setItem("buses", JSON.stringify(buses));
+      loadBuses();
+    }
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const newBus = {
+        name: document.getElementById("name").value,
+        model: document.getElementById("model").value,
+        color: document.getElementById("color").value,
+        plate: document.getElementById("plate").value,
+        engine: document.getElementById("engine").value,
+        chassis: document.getElementById("chassis").value,
+        passengers: document.getElementById("passengers").value,
+        cost: document.getElementById("cost").value,
+        purchaseDate: document.getElementById("purchaseDate").value,
+        workDate: document.getElementById("workDate").value,
+        condition: document.getElementById("condition").value
+      };
+
+      const buses = JSON.parse(localStorage.getItem("buses") || "[]");
+      buses.push(newBus);
+      localStorage.setItem("buses", JSON.stringify(buses));
+      form.reset();
+      loadBuses();
+      alert("Bus saved successfully!");
+    });
+
+    loadBuses();
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.actions-menu button')) {
+        document.querySelectorAll('.actions-menu').forEach(m => m.classList.remove('show'));
+      }
+    }
+  </script>
+</body>
+</html>

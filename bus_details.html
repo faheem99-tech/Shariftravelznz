@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bus Details - Sharif Travel</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
+    }
+
+    /* ===== Header ===== */
+    header {
+      background-color: #004080;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 25px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: 1px;
+    }
+
+    .logo-area img {
+      width: 120px;
+      height: 50px;
+      object-fit: contain;
+      background-color: #fff;
+      border-radius: 4px;
+    }
+
+    /* ===== Back Button ===== */
+    .back-btn {
+      background-color: white;
+      color: #004080;
+      border: 2px solid #004080;
+      padding: 8px 15px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .back-btn:hover {
+      background-color: #004080;
+      color: white;
+    }
+
+    /* ===== Main Content ===== */
+    .main-content {
+      padding: 30px;
+    }
+
+    .main-content h2 {
+      color: #004080;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    /* ===== Table Styles ===== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #004080;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .no-data {
+      text-align: center;
+      padding: 30px;
+      font-style: italic;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <a href="index.html" class="back-btn">← Back</a>
+    <h1>SHARIF TRAVEL</h1>
+    <div class="logo-area">
+      <img src="LOGS.jpg" alt="Company Logo">
+    </div>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <div class="main-content">
+    <h2>Bus Details</h2>
+
+    <table id="busTable">
+      <thead>
+        <tr>
+          <th>Bus Name</th>
+          <th>Model</th>
+          <th>Color</th>
+          <th>Plate Number</th>
+          <th>Engine Number</th>
+          <th>Chassis Number</th>
+          <th>Passengers</th>
+          <th>Purchase Cost</th>
+          <th>Date of Purchase</th>
+          <th>Date of Work Begins</th>
+          <th>Condition</th>
+        </tr>
+      </thead>
+      <tbody id="busTableBody">
+        <tr><td colspan="11" class="no-data">No bus records found.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ===== SCRIPT ===== -->
+  <script>
+    /* Load Bus Details from Local Storage */
+    function loadBusDetails() {
+      const buses = JSON.parse(localStorage.getItem("buses") || "[]");
+      const tbody = document.getElementById("busTableBody");
+      tbody.innerHTML = "";
+
+      if (buses.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="11" class="no-data">No bus records found.</td></tr>';
+        return;
+      }
+
+      buses.forEach(b => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${b.name}</td>
+          <td>${b.model}</td>
+          <td>${b.color}</td>
+          <td>${b.plate}</td>
+          <td>${b.engine}</td>
+          <td>${b.chassis}</td>
+          <td>${b.passengers}</td>
+          <td>${b.cost}</td>
+          <td>${b.purchaseDate}</td>
+          <td>${b.workDate}</td>
+          <td>${b.condition}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    loadBusDetails();
+  </script>
+
+</body>
+</html>
